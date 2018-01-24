@@ -1,17 +1,107 @@
 /** This is the general ToDo List **//
 
+*****Please add a detailed outline of operation of each function right above the declaration in the source files*****
+This list is to give ideas and general outlines but does not need to be followed by the T.
+
+-Current Tasks (see below for detailed descriptions)
+    -Niko
+        todo create code for low lvl creeps (source, harvester, smallMiner, Builder and upGrader)
+    -Blake
+        todo make sure the initial tutorial code complies and runs without errors on the actual screeps server
+        todo create beginnings of civLevel code
+    -whos next??
+
 -Room
     civLevel
-        todo create civlevel function so the spawner will correctly spawn creeps
+        /* Outline of operation
+            civLevel(0)
+                will only spawn harvester, builder and upgraders
+                as of now must manually place roads and extensions.
+            civLevel(1)
+        */
+        todo create civlevel function so the spawner will correctly spawn creeps for civLevel(0)
+
 
 -Buildings
     Turret
         todo create actual logic
+    Source
+        todo create persistent memory that other creeps can access to know how many and who is mining that particular source.
 
 -Creeps
     Harvester
+        /* Description
+            This is one of the first level creeps
+            It will harvest energy and move it to storage
+            body size [WORK,CARRY,MOVE]
+        */
+
+        /* Outline of operation
+            1. Creep spawns
+            2. Finds nearest source that needs additional harvesters and puts in memory that it will now be harvesting that source
+            3. moves to source
+            4. harvests until full
+            5. moves to nearest empty storage (right now extensions, needs to check everytime incase another harvester fills)
+            6. drops off and then moves back to step 3
+        */
+        todo create logic that is persistent with tick updates (store in memory)
         todo Make it so harvesters move away from source if idle
         todo transfer from container to spawn/extensions if source is out of energy
+
+    upGrader
+        /* Description
+            This is one of the first level creeps
+            It will harvest energy and then upgrade the room controller
+            body size [WORK,WORK,CARRY,MOVE,MOVE]
+        */
+
+        /* Outline of operation
+            Operation at civLevel(0)
+            1. Creep spawns
+            2. Finds nearest source to the room controller and puts in memory that it will now be harvesting that source
+            3. moves to source
+            4. harvests until full
+            5. moves to controller
+            6. upgrades and then moves back to step 3
+        */
+
+    Builder
+        /* Description
+            This is one of the first level creeps
+            It will take energy from storage and use it to construct buildings
+            when there is nothing to be built it will turn into a repair creep
+            body size [WORK,WORK,CARRY,MOVE,MOVE,MOVE]
+        */
+
+        /* Outline of operation
+            operation at civLevel(0) [placing all building will be manual at this point in time]
+            1. Creep spawns
+            2. Finds nearest storage and fill
+            3. moves to nearest construction site (can set building priorities later)
+            4. starts and finishes build
+            5. If there are additional construction sites and creep has enough energy to build goto step 3 else step 2
+            6. If there are no more construction sites use remaining stored energy to repair nearest structure (can set priorities later)
+            7. goto step 2
+        */
+            todo repairing will always go after closest job - make it so it chooses once and then sticks to it
+            todo Walls only repair to certain hit points based on civLevel
+            todo walls should repair up evenly
+
+    Repair
+        /* Description
+            This is one of the first level creeps and will be a sub routine of the builder
+            read above
+        */
+
+        /* Outline of operation
+            repair all the things
+        */
+            todo Have it so logic will rank the lowest health ratio and creeps will repair that first
+            todo Make it so creeps don't all just try to repair the same thing when above task is being used
+            todo Creeps should repair ramparts to 5% health when they first build them
+
+    The below creeps are still being outlined and will only be activated when civLevel != 0
+
     smallMiner
         todo body parts 1x Move, 7x work, 2x carry total of
         todo sets construction site of container or link next to where its harvesting (another link would be placed next to a storage)
@@ -21,13 +111,8 @@
         todo same as above but 15 body parts number of MOVES equals 1/4 the amount of other parts and 18x work and 2x carry (30 parts? )
     Transporter
         todo create logic for transporter
-    Builder
-        todo repairing will always go after closest job - make it so it chooses once and then sticks to it
-        todo Walls only repair to certain hit points based on civLevel
-    Repair
-        todo Have it so logic will rank the lowest health ratio and creeps will repair that first
-        todo Make it so creeps don't all just try to repair the same thing when above task is being used
-        todo Creeps should repair ramparts to 5% health when they first build them
+
+
     Solider
         todo use flag as rally points
     Spawner
