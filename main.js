@@ -13,5 +13,7 @@ module.exports.loop = function () {
 
     // Creep Logic
     controllerCreeps.run();
+
+    //NIKO'S RANDOM SHITTY CODE THAT WILL FUCK EVERYTHING UP COZ HE FORGOT ANOTHER =
 }
 
