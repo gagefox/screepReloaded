@@ -17,6 +17,6 @@ module.exports.loop = function () {
     //NIKO'S RANDOM SHITTY CODE THAT WILL FUCK EVERYTHING UP COZ HE FORGOT ANOTHER =
     // MORE CHANGES YAY SIGH
     // why is this stuff still here, I updated ...
-    // MORE RANDOM UPDATES TO DELETEASDFASDF
+    // MORE RANDOM UPDATES TO DELETEASDFASDFasdf
 }
 
