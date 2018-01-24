@@ -1,0 +1,42 @@
+/** This is the general ToDo List **//
+
+-Room
+    civLevel
+        todo create civlevel function so the spawner will correctly spawn creeps
+
+-Buildings
+    Turret
+        todo create actual logic
+
+-Creeps
+    Harvester
+        todo Make it so harvesters move away from source if idle
+        todo transfer from container to spawn/extensions if source is out of energy
+    smallMiner
+        todo body parts 1x Move, 7x work, 2x carry total of
+        todo sets construction site of container or link next to where its harvesting (another link would be placed next to a storage)
+        todo saves mining location in memory??
+        todo 10 works and places energy in containers right next to it
+    BigMiner
+        todo same as above but 15 body parts number of MOVES equals 1/4 the amount of other parts and 18x work and 2x carry (30 parts? )
+    Transporter
+        todo create logic for transporter
+    Builder
+        todo repairing will always go after closest job - make it so it chooses once and then sticks to it
+        todo Walls only repair to certain hit points based on civLevel
+    Repair
+        todo Have it so logic will rank the lowest health ratio and creeps will repair that first
+        todo Make it so creeps don't all just try to repair the same thing when above task is being used
+        todo Creeps should repair ramparts to 5% health when they first build them
+    Solider
+        todo use flag as rally points
+    Spawner
+
+-General Ideas
+    todo All energy travel life: source -> link/link -> transporter/hauler -> storage -> hauler -> container -> upgraders/builder/repair -> worksite
+
+-Useful information
+    source regens every 300 ticks 3000 energy max in main room
+    MOVE 50energy
+    WORK 100energy harvests 2energy per-tick
+    CARRY 50energy 50 resource units
