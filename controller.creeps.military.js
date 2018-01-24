@@ -1,9 +1,9 @@
 /** Military Creeps control logic **/
 
 // Includes
-var roleHarvester = require('./roles/role.harvester');
-var roleUpgrader = require('./roles/role.upgrader');
-var roleBuilder = require('./roles/role.builder');
+var roleHarvester = require('./role.harvester');
+var roleUpgrader = require('./role.upgrader');
+var roleBuilder = require('./role.builder');
 
 var controllerCreepsMilitary = {
     run: function () {

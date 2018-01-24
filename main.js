@@ -1,8 +1,7 @@
 // Includes
-var controllerBuilding =  require('./controllers/controller.buildings');
-var controllerRoom =  require('./controllers/controller.room');
-var controllerCreeps = require('./controllers/controller.creeps')
-
+var controllerBuilding =  require('./controller.buildings');
+var controllerRoom =  require('./controller.room');
+var controllerCreeps = require('./controller.creeps');
 
 // Main loop
 module.exports.loop = function () {
