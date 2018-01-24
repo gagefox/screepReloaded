@@ -9,6 +9,7 @@ This list is to give ideas and general outlines but does not need to be followed
     -Blake
         todo make sure the initial tutorial code complies and runs without errors on the actual screeps server
         todo create beginnings of civLevel code
+        todo create logic to find the name of the spawner and put it into memory (default is NewEden)
     -whos next??
 
 -Room

@@ -1,13 +1,9 @@
-//THIS IS PURE COPY PASTE FROM OLD CODE NEED TO UPDATE
-
 var controllerSpawnLogic = {
     run: function() {
         var civLevel = 0;
         var maxHarvesters;
         var maxUpgraders;
         var maxBuilders;
-        var maxsmallMiners;
-        var maxbigMiners;
 
         //Changes what is spawning per room
         switch(civLevel) {
@@ -22,12 +18,6 @@ var controllerSpawnLogic = {
             // civLevel 1
             // will remove the need for harvesters and move to the smallMiner and Hauler setup
             case 1:
-                maxHarvesters = 0;
-                maxUpgraders = 6;
-                maxBuilders = 3;
-
-                var sources = Game.room.find(FIND_SOURCES);
-                var maxSmallMiners = sources.length;
                 break;
 
             // civLevel 2
@@ -36,29 +26,23 @@ var controllerSpawnLogic = {
                 break;
         }
 
-        var harvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
-        var upgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
-        var builders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
-        var smallMiners = _.filter(Game.creeps, (creep) => creep.memory.role == 'smallMiner');
-        //var bigMiners = _.filter(Game.creeps, (creep) => creep.memory.role == 'bigMiner');
-        //var haulers = _.filter(Game.creeps, (creep) => creep.memory.role == 'hauler');
+        // This logic finds how many creeps are currently in the game
+        var currentHarvesters = _.filter(Game.creeps, (creep) => creep.memory.role == 'harvester');
+        var currentUpgraders = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
+        var currentBuilders = _.filter(Game.creeps, (creep) => creep.memory.role == 'builder');
 
-        //Spawning Logic
-
-        if(harvesters.length < maxHarvesters) {
+        // This is the logic to actually spawn the creeps
+        //todo create logic for piroity type spawning
+        if(currentHarvesters.length < maxHarvesters) {
             Game.spawns['NewEden'].createCreep([WORK,CARRY,MOVE], undefined, {role: 'harvester'});
         }
 
-        else if (upgraders.length < maxUpgraders) {
+        else if (currentUpgraders.length < maxUpgraders) {
             Game.spawns['NewEden'].createCreep([WORK,WORK,CARRY,MOVE,MOVE], undefined, {role: 'upgrader'});
         }
 
-        else if (builders.length < maxBuilders) {
+        else if (currentBuilders.length < maxBuilders) {
             Game.spawns['NewEden'].createCreep([WORK,WORK,CARRY,MOVE,MOVE,MOVE], undefined, {role: 'builder'});
-        }
-
-        else if (smallMiners.length < maxSmallMiners) {
-            Game.spawns['NewEden'].createCreep([WORK,WORK,CARRY,MOVE], undefined, {role: 'smallMiner'});
         }
     }
 };

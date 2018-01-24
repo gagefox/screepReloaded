@@ -9,14 +9,10 @@ module.exports.loop = function () {
     controllerRoom.run();
 
     // Building Logic
-    controllerBuilding.run();
+    //todo create building logic
+    //controllerBuilding.run();
 
     // Creep Logic
     controllerCreeps.run();
-
-    //NIKO'S RANDOM SHITTY CODE THAT WILL FUCK EVERYTHING UP COZ HE FORGOT ANOTHER =
-    // MORE CHANGES YAY SIGH
-    // why is this stuff still here, I updated ...
-    // MORE RANDOM UPDATES TO DELETEASDFASDFasdf
 }
 

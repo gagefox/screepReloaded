@@ -8,9 +8,11 @@ var controllerCreeps = {
         controllerSpawnLogic.run();
 
         // Military Creep Logic
-        controllerCreepsMilitary.run();
+        //todo create military creep logic
+        //controllerCreepsMilitary.run();
 
         // Civilian Creep Logic
+        //todo create civilian creep logic
         controllerCreepsCivilian.run();
     }
 };
