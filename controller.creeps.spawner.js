@@ -33,16 +33,24 @@ var controllerSpawnLogic = {
 
         // This is the logic to actually spawn the creeps
         //todo create logic for piroity type spawning
+
+        var spawn;
+
+        for(let name in Game.spawns){
+            var spawn = Game.spawns[name];
+            break;
+        }
+
         if(currentHarvesters.length < maxHarvesters) {
-            Game.spawns['NewEden'].createCreep([WORK,CARRY,MOVE], undefined, {role: 'harvester'});
+            spawn.createCreep([WORK,CARRY,MOVE], undefined, {role: 'harvester'});
         }
 
         else if (currentUpgraders.length < maxUpgraders) {
-            Game.spawns['NewEden'].createCreep([WORK,WORK,CARRY,MOVE,MOVE], undefined, {role: 'upgrader'});
+            spawn.createCreep([WORK,WORK,CARRY,MOVE,MOVE], undefined, {role: 'upgrader'});
         }
 
         else if (currentBuilders.length < maxBuilders) {
-            Game.spawns['NewEden'].createCreep([WORK,WORK,CARRY,MOVE,MOVE,MOVE], undefined, {role: 'builder'});
+            spawn.createCreep([WORK,WORK,CARRY,MOVE,MOVE,MOVE], undefined, {role: 'builder'});
         }
     }
 };
