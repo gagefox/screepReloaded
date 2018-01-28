@@ -1,14 +1,9 @@
 //Move these functions to prototype??
 
-//GET POST POS
+//GET POST POS -- CURRENTLY GETTING POS OF NEAREST SOURCE UNTIL WE FIGURE OUT HOW WE DO THIS...
 let getPost = function (creep) {
-    let x;
-    let y;
-    let roomName;
-    return new RoomPosition(x,y,room);
-
     let sourcePos;
-    let sources = creep.room.find(FIND_SOURCES_ACTIVE)
+    let sources = creep.room.find(FIND_SOURCES);
     for(let i in sources){
         let source = sources[i];
         if(source.energy === source.energyCapacity){
@@ -17,9 +12,9 @@ let getPost = function (creep) {
         }
     }
     return sourcePos;
-}
+};
 
-//MOVE TO POST
+//MOVE TO POST - CURRENTLY MOVING NEAR TO ACTIVE SPAWN UNTIL WE FIGURE OUT HOW WE DO THIS...
 let moveToPost = function (creep) {
     let creepPos = creep.pos;
     let post = getPost(creep);
@@ -29,7 +24,7 @@ let moveToPost = function (creep) {
     else {
         status = 'AtPost';
     }
-}
+};
 
 //CALCULATE CARRY SUM
 let calcCarrySum = function (creep) {
@@ -38,21 +33,35 @@ let calcCarrySum = function (creep) {
         sum += creep.carry[item];
     }
     return sum;
-}
+};
 
 //GET INPUT
 let getInput = function (creep) {
-
-}
+    let sourceId = creep.pos.findInRange(FIND_SOURCES, 1)[0].id;
+    creep.memory.inputId = sourceId;
+    return sourceId;
+};
 
 //GET OUTPUT
 let getOutput = function (creep) {
-    
-}
+    let creepPos = creep.pos;
+    let containerFilter = {filter: {structureType : STRUCTURE_CONTAINER}};
+    let containerId = creepPos.findInRange(FIND_STRUCTURES, 1, containerFilter)[0];
+    if(!containerId){
+        let siteId = creepPos.lookFor(LOOK_CONSTRUCTION_SITES)[0].id;
+        if(!siteId){
+            creepPos.createConstructionSite(STRUCTURE_CONTAINER);
+        }
+        creep.build(siteId);
+        return;
+    }
+    creep.memory.outputId = containerId;
+    return containerId
+};
 
 
 //OPERATE THE MINER
-var miner = function(creep){
+let miner = function(creep){
     let memory = creep.memory;              //MEMORY SHORTCUT
     let status = memory.status || 'Ready';  //STATUS SHORTCUT
 
@@ -60,16 +69,18 @@ var miner = function(creep){
     if(status === 'AtPost'){
         let carrySum = calcCarrySum(creep);
         let capacity = creep.carryCapacity;
-        let input = Game.getObjectById(memory.inputId || creep.getInput(creep));
-        let output = Game.getObjectById(memory.outputId || creep.getOutput(creep));
+        let input = Game.getObjectById(memory.inputId || getInput(creep));
+        let output = Game.getObjectById(memory.outputId || getOutput(creep));
 
+        creep.harvest(input);
+        if(carrySum === capacity){
+            creep.transfer(output, RESOURCE_ENERGY);
+        }
     }
-
     //IF CREEP IS NOT AT LOCATION TO MINE:
     else{
-        creep.moveToPost(creep);
+        moveToPost(creep);
     }
-}
-
+};
 
 module.exports = miner;
