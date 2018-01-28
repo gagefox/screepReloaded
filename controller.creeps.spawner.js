@@ -46,11 +46,11 @@ var controllerSpawnLogic = {
         }
 
         else if (currentUpgraders.length < maxUpgraders) {
-            spawn.createCreep([WORK,WORK,CARRY,MOVE,MOVE], undefined, {role: 'upgrader'});
+            spawn.createCreep([WORK,CARRY,MOVE,MOVE], undefined, {role: 'upgrader'});
         }
 
         else if (currentBuilders.length < maxBuilders) {
-            spawn.createCreep([WORK,WORK,CARRY,MOVE,MOVE,MOVE], undefined, {role: 'builder'});
+            spawn.createCreep([WORK,CARRY,MOVE,MOVE], undefined, {role: 'builder'});
         }
     }
 };
