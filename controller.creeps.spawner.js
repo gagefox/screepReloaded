@@ -37,7 +37,7 @@ var controllerSpawnLogic = {
         var spawn;
 
         for(let name in Game.spawns){
-            var spawn = Game.spawns[name];
+            spawn = Game.spawns[name];
             break;
         }
 
